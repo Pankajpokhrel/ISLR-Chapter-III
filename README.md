@@ -123,15 +123,19 @@ balance_gender <- lm(Balance ~ Gender, data = Credit)
 summary(balance_gender)
 
 balance_ethnicity <- lm(Balance ~ Ethnicity, data = Credit)
+
 summary(balance_ethnicity)
 
 sales <- lm(Sales ~ TV + Radio + TV*Radio, data = Advertising)
+
 summary(sales) 
 
 line1 <-  ggplot(data = Advertising,mapping = aes(x=TV, y= Sales) ) + geom_smooth(method = "lm", se = FALSE, lwd = 1, lty = 1, color = "steelblue") + theme_test()
 
 print(line1)
+
 ##
+
 ggplot(data = Credit, mapping = aes(x = Income, y=Balance, color = Student)) + geom_point() +
   geom_smooth(method = "lm", se = FALSE, lwd = 1, lty = 1)+ theme_test()
 
@@ -157,11 +161,17 @@ ggplot(data = Credit, mapping = aes(x = Income, y = Balance, color = Student)) +
 
 ggplot(data = Credit, mapping = aes(x = Income, y = Balance, color = Student)) +
   geom_line(aes(y = Predicted2)) + theme_test()
+
 ###################
+
 Auto <- read.table(file = "F:/FROM F DRIVE HP/R/rlessons/ISLR Master/ISLR-master/dataset/Auto.data", header = TRUE, dec = ".")
+
 head(Auto)
+
 Auto$horsepower <- as.numeric(Auto$horsepower)
+
 Auto <- na.omit(Auto)
+
 ggplot(data = Auto, mapping = aes(x = horsepower, y = mpg)) + geom_point(cex = .9, alpha = 0.5) + geom_smooth(method = "lm", se = FALSE, lwd = 1, lty = 1, color = "orange") + 
     theme_test()
 
@@ -170,34 +180,52 @@ ggplot(data = Auto, mapping = aes(x = horsepower, y = mpg)) + geom_point(cex = .
 
 ggplot(data = Auto, mapping = aes(x = horsepower, y = mpg)) + geom_point(cex = .9, alpha = 0.5) + geom_smooth(formula = "y ~ poly(x, 2)", se = FALSE, lwd = 1, lty = 1, color = "green") + 
    theme_test()
+
 ############
 ggplot(data = Auto, mapping = aes(x = horsepower, y = mpg)) + geom_point(cex = .9, alpha = 0.5) + 
   geom_smooth(method = "lm", se = FALSE, lwd = 1, lty = 1, color = "orange") + 
   geom_smooth(formula = "y ~ x^2", se = FALSE, lwd = 1, lty = 1, color = "steelblue") +
   geom_smooth(formula = "y ~ poly(x, 2)", se = FALSE, lwd = 1, lty = 1, color = "green") +
   theme_test()
+
 mpg1 <- lm(data = Auto, mpg ~ horsepower)
+
 mpg2 <- lm(data = Auto, mpg ~ horsepower + I(horsepower^2))
+
 summary(mpg1)
+
 summary(mpg2)
+
 ################
+
 Auto$residual1 <- residuals(mpg1)
+
 Auto$fitted1 <- predict(mpg1)
+
 Auto$residual2 <- residuals(mpg2)
+
 Auto$fitted2 <- predict(mpg2)
+
 ggplot(data = Auto, mapping = aes(x = fitted1, y = residual1)) + geom_point() + geom_smooth( color = "red", se = FALSE) + theme_test() 
 
 ggplot(data = Auto, mapping = aes(x = fitted2, y = residual2)) + geom_point() + geom_smooth(color = "red", se = FALSE) + theme_test()
+
 plot(mpg1)
+
 plot(mpg2)
+
 ###########
+
 #### Add line touching the outer quantiles of the residual (test for heteroscedasticity)
 
 
 ################## Collinearity
 Balance_rating_limit <- lm(Balance ~ Rating + Limit, data = Credit)
+
 summary(Balance_rating_limit)
+
 Balance_age_limit <- lm(Balance ~ Age + Limit, data = Credit)
+
 summary(Balance_age_limit)
 
 
