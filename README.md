@@ -1,9 +1,11 @@
 # ISLR-Chapter-III
+## Upload data
 Advertising <- read.csv("F:/FROM F DRIVE HP/R/rlessons/ISLR Master/ISLR-master/dataset/Advertising.csv")
+### Plot and fit model
 with(data=Advertising, plot(TV, Sales, col="red"))
 model <- lm(formula = Sales ~ TV, data = Advertising)
 abline(model, lwd=2, col="blue")
-###
+#
 summary(model)
 Advertising$Predicted <- predict(model) # Save the predicted values
 Advertising$Residuals <- residuals(model) # save the residual values
@@ -40,7 +42,8 @@ corrplot(M, method =  "circle", type = "upper")
 corrplot(M, method = "square", order = "hclust", diag = FALSE)
 corrplot(M, method = "square", order = "hclust", type = "upper")
 
-#############################################################################
+############################################################################
+
 #3d Regression Plotting
 library("plot3D")
 
@@ -52,8 +55,7 @@ z <- Advertising$Sales
 # Compute the linear regression 
 fit <- lm(z ~ x + y)
 
-# create a grid from the x and y values (min to max) and predict values for every point
-# this will become the regression plane
+# create a grid from the x and y values (min to max) and predict values for every point this will become the regression plane
 grid.lines = 40
 x.pred <- seq(min(x), max(x), length.out = grid.lines)
 y.pred <- seq(min(y), max(y), length.out = grid.lines)
