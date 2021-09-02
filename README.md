@@ -1,5 +1,5 @@
 # ISLR-Chapter-III
-## Upload data
+# # Upload data
 Advertising <- read.csv("F:/FROM F DRIVE HP/R/rlessons/ISLR Master/ISLR-master/dataset/Advertising.csv")
 ### Plot and fit model
 with(data=Advertising, plot(TV, Sales, col="red"))
